@@ -1,0 +1,385 @@
+:root {
+    --bg-color: #0b0c10;
+    --panel-bg: rgba(31, 40, 51, 0.6);
+    --panel-border: rgba(102, 252, 241, 0.15);
+    --text-primary: #c5c6c7;
+    --text-neon-cyan: #66fcf1;
+    --text-neon-cyan-dim: #45a29e;
+    --text-neon-purple: #b829f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top right, rgba(102, 252, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(184, 41, 240, 0.05), transparent 40%);
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1500px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+header {
+    text-align: center;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.neon-text {
+    color: var(--text-neon-cyan);
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.6), 0 0 20px rgba(102, 252, 241, 0.2);
+}
+
+.subtitle {
+    margin-top: 0.5rem;
+    color: var(--text-neon-cyan-dim);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+}
+
+.panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.input-panel h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-neon-cyan-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    padding: 0.75rem;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.input-group input:focus {
+    border-color: var(--text-neon-cyan);
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.2);
+}
+
+.action-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--text-neon-cyan-dim), var(--text-neon-cyan));
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 1rem;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+}
+
+.trace-controls {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--panel-border);
+}
+
+.trace-controls h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.playback-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--panel-border);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.control-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.control-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.play-btn {
+    border-color: var(--text-neon-purple);
+    color: var(--text-neon-purple);
+}
+
+.play-btn:hover:not(:disabled) {
+    background: rgba(184, 41, 240, 0.1);
+}
+
+.visualizer-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.flowchart-container {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.flowchart-container::-webkit-scrollbar {
+    width: 6px;
+}
+.flowchart-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+}
+.flowchart-container::-webkit-scrollbar-thumb {
+    background: var(--text-neon-cyan-dim);
+    border-radius: 4px;
+}
+
+.flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    animation: fadeInSlide 0.4s ease forwards;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.flow-arrow {
+    color: var(--text-neon-cyan-dim);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.flow-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.flow-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+}
+
+.flow-block h4 {
+    margin-bottom: 0.75rem;
+    color: white;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.flow-connector {
+    color: var(--text-neon-purple);
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-neon-cyan-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Fira Code', monospace;
+}
+
+.neon-purple {
+    color: var(--text-neon-purple);
+    text-shadow: 0 0 10px rgba(184, 41, 240, 0.6);
+}
+
+.neon-cyan {
+    color: var(--text-neon-cyan);
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.6);
+}
+
+.state-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+}
+
+.nibble-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Fira Code', monospace;
+    position: relative;
+}
+
+.nibble-box .index {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 0.5rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.nibble-box .val {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Animations based on operation – Encrypt */
+.op-SubCells    { border-color: rgba(184, 41, 240, 0.6);  box-shadow: 0 0 15px rgba(184, 41, 240, 0.2); }
+.op-PermBits    { border-color: rgba(102, 252, 241, 0.6); box-shadow: 0 0 15px rgba(102, 252, 241, 0.2); }
+.op-AddConstants{ border-color: rgba(255, 165, 0, 0.6);   box-shadow: 0 0 15px rgba(255, 165, 0, 0.2); }
+.op-AddRoundKey { border-color: rgba(255, 50, 50, 0.6);   box-shadow: 0 0 15px rgba(255, 50, 50, 0.2); }
+.op-KeySchedule { border-color: rgba(255, 255, 100, 0.6); box-shadow: 0 0 15px rgba(255, 255, 100, 0.2); }
+
+/* Decrypt inverse operations */
+.op-SubCellsInv  { border-color: rgba(220, 80, 255, 0.6);  box-shadow: 0 0 15px rgba(220, 80, 255, 0.2); }
+.op-PermBitsInv  { border-color: rgba(0, 230, 200, 0.6);   box-shadow: 0 0 15px rgba(0, 230, 200, 0.2); }
+
+/* Mode toggle */
+.mode-toggle-wrap {
+    display: flex;
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 0.6rem 0;
+    background: transparent;
+    border: none;
+    color: var(--text-neon-cyan-dim);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    letter-spacing: 0.5px;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--text-neon-cyan-dim), var(--text-neon-cyan));
+    color: #000;
+}
+
+.mode-btn:not(.active):hover {
+    background: rgba(102, 252, 241, 0.08);
+    color: var(--text-neon-cyan);
+}
+
+/* Mode badge in stats bar */
+#val-mode {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #66fcf1;
+    text-shadow: 0 0 8px rgba(102, 252, 241, 0.7);
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+#val-mode.decrypt-mode {
+    color: #f06292;
+    text-shadow: 0 0 8px rgba(240, 98, 146, 0.7);
+}

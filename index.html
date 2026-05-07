@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAKSHEESH Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="neon-text">BAKSHEESH</span> visualizer
+            </div>
+            <p class="subtitle">Interactive 128-bit Block Cipher Transformation Explorer</p>
+        </header>
+
+        <main class="dashboard">
+            <section class="panel input-panel">
+                <h2>Configuration</h2>
+
+                <div class="mode-toggle-wrap">
+                    <button id="mode-encrypt" class="mode-btn active">&#128274; Encrypt</button>
+                    <button id="mode-decrypt" class="mode-btn">&#128275; Decrypt</button>
+                </div>
+
+                <div class="input-group">
+                    <label id="label-input" for="data-input">Plaintext (32 Hex Characters)</label>
+                    <input type="text" id="data-input" value="0123456789ABCDEF0123456789ABCDEF" maxlength="32">
+                </div>
+
+                <div class="input-group">
+                    <label for="key">Master Key (32 Hex Characters)</label>
+                    <input type="text" id="key" value="00000000000000000000000000000000" maxlength="32">
+                </div>
+
+                <button id="btn-encrypt" class="action-btn">Initialize Trace</button>
+
+                <div class="trace-controls" id="trace-controls" style="display: none;">
+                    <h3>Playback</h3>
+                    <div class="playback-buttons">
+                        <button id="btn-prev" class="control-btn" disabled>&larr; Prev</button>
+                        <button id="btn-play" class="control-btn play-btn">Play</button>
+                        <button id="btn-next" class="control-btn">Next &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel visualizer-panel" style="overflow: hidden; display: flex; flex-direction: column;">
+                <div class="visualizer-header">
+                    <div class="stat-box">
+                        <span class="stat-label">Current Round</span>
+                        <span class="stat-value neon-purple" id="val-round">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Mode</span>
+                        <span class="stat-value" id="val-mode">ENCRYPT</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Progress</span>
+                        <span class="stat-value" id="val-step">0/0</span>
+                    </div>
+                </div>
+
+                <div class="flowchart-container" id="flowchart-container">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
